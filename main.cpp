@@ -33,15 +33,22 @@ public:
 		zf::include("./forth/core.zf");
 
 		// Initialize PLN0 state with R-Pentonimo
-		g_cam.set_state(CAM_half::PLN0, 125, 127, "..##.");
-		g_cam.set_state(CAM_half::PLN0, 125, 128, ".##..");
-		g_cam.set_state(CAM_half::PLN0, 125, 129, "..#..");
+		//g_cam.set_state(CAM_half::PLN0, 125, 127, "..##.");
+		//g_cam.set_state(CAM_half::PLN0, 125, 128, ".##..");
+		//g_cam.set_state(CAM_half::PLN0, 125, 129, "..#..");
 
 		// Infinite Growth
-		g_cam.set_state(CAM_half::PLN0, 20, 50, "########.#####...###......#######.#####");
+		//g_cam.set_state(CAM_half::PLN0, 20, 50, "########.#####...###......#######.#####");
+
+		//Init PLN0 with small square.
+		g_cam.set_state(CAM_half::PLN0, 128, 126, "####");
+		g_cam.set_state(CAM_half::PLN0, 128, 127, "####");
+		g_cam.set_state(CAM_half::PLN0, 128, 128, "####");
+		g_cam.set_state(CAM_half::PLN0, 128, 129, "####");
 
 		// Make the PLN0 rules
-		g_cam.make_table(rules::life);
+		//g_cam.make_table(rules::life);
+		g_cam.make_table(rules::parity);
 
 		// Make the PLN1 rules
 		g_cam.make_table(rules::echo);
@@ -56,7 +63,7 @@ public:
 
 		//if (!GetKey(olc::Key::SPACE).bHeld)
 		//	return true;
-		//Sleep(10);
+		Sleep(100);
 
 		// User Input
 		if (GetKey(olc::Key::TAB).bPressed)

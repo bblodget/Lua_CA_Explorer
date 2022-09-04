@@ -26,6 +26,20 @@ int rules::life(int neighbors)
 	}
 };
 
+int rules::parity(int neighbors)
+{
+	g_cam.set_neighborhood(CAM_half::N_MOORE);
+	g_cam.set_table(CAM_half::PLN0);
+
+	// FIXME: This technique is not portable.
+	// But it is convenient. 
+	CAM_half::N_Moore* n = (CAM_half::N_Moore*)&neighbors;
+
+	// XOR these togehter
+	return n->CENTER ^ n->NORTH ^ n->SOUTH ^ n->WEST ^ n->EAST;
+
+};
+
 int rules::echo(int neighbors)
 {
 	g_cam.set_neighborhood(CAM_half::N_MOORE);

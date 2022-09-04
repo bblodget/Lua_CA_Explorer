@@ -23,8 +23,11 @@ public:
 public:
 	bool OnUserCreate() override
 	{
+		
 		// Called once at the start, so create things here
 
+		// Init random generator
+		srand(time(NULL));
 
 		ConsoleCaptureStdOut(true);
 
@@ -36,7 +39,9 @@ public:
 		// Init CAM machine
 		//cam_example::life_r_pentonimo();
 		//cam_example::life_inf_growth();
-		cam_example::parity();
+		//cam_example::life_random();
+		//cam_example::parity();
+		cam_example::hglass();
 
 		return true;
 	}
@@ -47,7 +52,9 @@ public:
 
 		//if (!GetKey(olc::Key::SPACE).bHeld)
 		//	return true;
-		Sleep(100);
+		//Sleep(10);
+		//if (!GetKey(olc::Key::SPACE).bPressed)
+		//	return true;
 
 		// User Input
 		if (GetKey(olc::Key::TAB).bPressed)
@@ -60,8 +67,9 @@ public:
 
 		// Go through every pixel and update for next state
 		// Display this state.
-		for (int x=0; x<ScreenWidth(); x++)
-			for (int y = 0; y < ScreenHeight(); y++)
+		
+		for (int y = 0; y < ScreenHeight(); y++)
+			for (int x = 0; x < ScreenWidth(); x++)
 			{	
 				g_cam.update_state(x, y);
 				Draw(x, y, g_cam.get_out_pixel(x, y));

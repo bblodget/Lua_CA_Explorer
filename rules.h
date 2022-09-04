@@ -6,5 +6,7 @@ namespace rules {
 	int parity(int neighbors);
 	int echo(int neighbors);
 	int trace(int neighbors);
+	int off(int neighbors);
+	int hglass(int neighbors);
 
 }

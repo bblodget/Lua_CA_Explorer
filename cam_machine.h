@@ -90,6 +90,15 @@ public:
 		m_neighborhood = hood;
 	}
 
+	void set_color_table(olc::Pixel color0, olc::Pixel color1,
+		olc::Pixel color2, olc::Pixel color3)
+	{
+		m_color_table[0] = color0;
+		m_color_table[1] = color1;
+		m_color_table[2] = color2;
+		m_color_table[3] = color3;
+	}
+
 	// Set the current table that make_table will write to
 	void set_table(Plane table)
 	{
@@ -111,6 +120,21 @@ public:
 				break;
 			}
 			p++;
+		}
+	}
+
+	void make_random_state(Plane plane)
+	{
+		for (int i = 0; i < (screen_width * screen_height); i++)
+		{
+			//int r = i % 16 == 0 ? rand() % 2 : 0;
+			int r = rand() & 7;
+			r = r == 1 ? 1 : 0;
+			switch (plane)
+			{
+			case PLN0: m_pln0_state[i] = r;
+			case PLN1: m_pln1_state[i] = r;
+			}
 		}
 	}
 

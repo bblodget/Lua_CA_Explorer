@@ -143,12 +143,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="cam_examples.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="rules.cpp" />
     <ClCompile Include="zforth.cpp" />
     <ClCompile Include="zforth_cam.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="cam_examples.h" />
     <ClInclude Include="cam_machine.h" />
     <ClInclude Include="rules.h" />
     <ClInclude Include="olcPixelGameEngine.h" />

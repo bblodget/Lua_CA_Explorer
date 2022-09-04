@@ -148,10 +148,6 @@ public:
 		int s_index = calc_index(x, y);
 		int r_index = 0;
 
-		if (x == 80 && y == 52) {
-			std::cout << "hi\n";
-		}
-
 		if (m_neighborhood == N_MOORE) {
 			r_index |= m_pln0_out[s_index] << 0;	// CENTER
 			r_index |= m_pln1_out[s_index] << 1;	// CENTER_

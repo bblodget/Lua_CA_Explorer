@@ -33,12 +33,19 @@ public:
 		zf::include("./forth/core.zf");
 
 		// Initialize PLN0 state with R-Pentonimo
-		g_cam.set_state(CAM_half::PLN0, 80, 50, "..##.");
-		g_cam.set_state(CAM_half::PLN0, 80, 51, ".##..");
-		g_cam.set_state(CAM_half::PLN0, 80, 52, "..#..");
+		g_cam.set_state(CAM_half::PLN0, 125, 127, "..##.");
+		g_cam.set_state(CAM_half::PLN0, 125, 128, ".##..");
+		g_cam.set_state(CAM_half::PLN0, 125, 129, "..#..");
+
+		// Infinite Growth
+		g_cam.set_state(CAM_half::PLN0, 20, 50, "########.#####...###......#######.#####");
 
 		// Make the PLN0 rules
 		g_cam.make_table(rules::life);
+
+		// Make the PLN1 rules
+		g_cam.make_table(rules::echo);
+		//g_cam.make_table(rules::trace);
 
 		return true;
 	}

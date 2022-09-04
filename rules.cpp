@@ -25,3 +25,27 @@ int rules::life(int neighbors)
 		else return 0;
 	}
 };
+
+int rules::echo(int neighbors)
+{
+	g_cam.set_neighborhood(CAM_half::N_MOORE);
+	g_cam.set_table(CAM_half::PLN1);
+
+	// FIXME: This technique is not portable.
+	// But it is convenient. 
+	CAM_half::N_Moore* n = (CAM_half::N_Moore*)&neighbors;
+
+	return n->CENTER;
+}
+
+int rules::trace(int neighbors)
+{
+	g_cam.set_neighborhood(CAM_half::N_MOORE);
+	g_cam.set_table(CAM_half::PLN1);
+
+	// FIXME: This technique is not portable.
+	// But it is convenient. 
+	CAM_half::N_Moore* n = (CAM_half::N_Moore*)&neighbors;
+
+	return n->CENTER | n->CENTER_;
+}

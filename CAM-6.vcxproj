@@ -159,6 +159,9 @@
     <ClInclude Include="zforth.h" />
     <ClInclude Include="zforth_cam.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="VideoExample.lua" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

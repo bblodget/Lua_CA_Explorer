@@ -37,11 +37,31 @@ int lua_HostFunction(lua_State* L)
 	return 1;  // return 1 value back to lua
 }
 
+
+//int lua_print(lua_State* L) {
+//	const char* str = luaL_checkstring(L, 1);
+//
+//	std::cout << str << std::endl;
+//
+//	return 0;
+//}
+
+//static int luaB_print(lua_State* L) {
 int lua_print(lua_State* L) {
-	const char* str = luaL_checkstring(L, 1);
-
-	std::cout << str << std::endl;
-
+	int n = lua_gettop(L);  /* number of arguments */
+	int i;
+	for (i = 1; i <= n; i++) {  /* for each argument */
+		size_t l;
+		const char* s = luaL_tolstring(L, i, &l);  /* convert it to string */
+		if (i > 1)  /* not the first element? */
+			std::cout << " ";
+			//lua_writestring("\t", 1);  /* add a tab before it */
+		//lua_writestring(s, l);  /* print it */
+		std::cout << s;
+		lua_pop(L, 1);  /* pop result */
+	}
+	//lua_writeline();
+	std::cout << std::endl;
 	return 0;
 }
 
@@ -162,7 +182,7 @@ public:
 		if (status != LUA_OK) 
 		{
 			std::string errormsg = lua_tostring(L, -1);
-			if (sText.rfind(EOFMARK) == std::string::npos) {
+			if (errormsg.rfind(EOFMARK) != std::string::npos) {
 				lua_pop(L, 1);
 				std::cout << "... ";
 				std::cout.flush();

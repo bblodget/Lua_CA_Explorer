@@ -9,7 +9,7 @@ players = {}
 players[0] = {Title = "Squaire", Name ="Ciaran", Family = "Wirral" , Level = 20}
 players[1] = {Title = "Lord", Name ="Diego", Family = "Brazil" , Level = 50}
 
-
+print("[LUA]  Hello World")
 
 function AddStuff(a, b)
 	print("[LUA] Addstuff("..a..", "..b..") called \n")

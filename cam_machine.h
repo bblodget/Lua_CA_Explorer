@@ -138,6 +138,18 @@ public:
 		}
 	}
 
+	void update_rule(int bit_plane, int index, int value)
+	{
+		switch (bit_plane) {
+		case PLN0:
+			m_pln0_rules[index] = value;
+			break;
+		case PLN1:
+			m_pln1_rules[index] = value;
+			break;
+		}
+	}
+
 	// Use the rule() function to update the current table.
 	void make_table(int(*rule)(int neighbors))
 	{

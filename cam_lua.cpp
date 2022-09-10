@@ -23,6 +23,7 @@ int luaopen_libLuaCAM(lua_State* L)
 {
 	lua_register(L, "print", lua_print);
 	lua_register(L, "set_color_table", lua_set_color_table);
+	lua_register(L, "update_rule", lua_update_rule);
 	return 1;
 }
 
@@ -43,7 +44,7 @@ int lua_print(lua_State* L)
 		lua_pop(L, 1);  /* pop result */
 	}
 	std::cout << std::endl;
-	return 0;
+	return 0; // return 0 items on the stack
 }
 
 /**
@@ -54,6 +55,8 @@ int lua_set_color_table(lua_State* L)
 {
 	// discard any extra arguemnts pass in
 	lua_settop(L, 4);
+
+	// Check 4 table params
 	luaL_checktype(L, 1, LUA_TTABLE);
 	luaL_checktype(L, 2, LUA_TTABLE);
 	luaL_checktype(L, 3, LUA_TTABLE);
@@ -84,6 +87,21 @@ int lua_set_color_table(lua_State* L)
 
 	g_cam.set_color_table(color[0], color[1], color[2], color[3]);
 
-	return 0;
+	return 0; // return 0 items on the stack
+}
+
+int lua_update_rule(lua_State* L)
+{
+	// discard any extra arguemnts pass in
+	lua_settop(L, 3);
+
+	// Get the params
+	int bit_plane = luaL_checkinteger(L, 1);
+	int index = luaL_checkinteger(L, 2);
+	int value = luaL_checkinteger(L, 3);
+
+	g_cam.update_rule(bit_plane, index, value);
+
+	return 0;	// return 0 items on the stack
 }
 

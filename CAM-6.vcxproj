@@ -182,12 +182,12 @@
     <ClCompile Include="lua-5.4.4\src\lzio.c" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="rules.cpp" />
-    <ClCompile Include="zforth.cpp" />
-    <ClCompile Include="zforth_cam.cpp" />
+    <ClCompile Include="cam_lua.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cam_examples.h" />
     <ClInclude Include="cam_machine.h" />
+    <ClInclude Include="cam_lua.h" />
     <ClInclude Include="lua-5.4.4\src\lapi.h" />
     <ClInclude Include="lua-5.4.4\src\lauxlib.h" />
     <ClInclude Include="lua-5.4.4\src\lcode.h" />
@@ -219,12 +219,9 @@
     <ClInclude Include="rules.h" />
     <ClInclude Include="olcPixelGameEngine.h" />
     <ClInclude Include="olcSoundWaveEngine.h" />
-    <ClInclude Include="zfconf.h" />
-    <ClInclude Include="zforth.h" />
-    <ClInclude Include="zforth_cam.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="VideoExample.lua" />
+    <None Include="cam_lua_setup.lua" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

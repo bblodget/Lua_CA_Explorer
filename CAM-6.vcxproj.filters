@@ -21,12 +21,6 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="zforth.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="zforth_cam.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="rules.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -129,21 +123,15 @@
     <ClCompile Include="lua-5.4.4\src\lzio.c">
       <Filter>lua-5.4.4</Filter>
     </ClCompile>
+    <ClCompile Include="cam_lua.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="olcPixelGameEngine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="olcSoundWaveEngine.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="zfconf.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="zforth.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="zforth_cam.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="rules.h">
@@ -239,8 +227,11 @@
     <ClInclude Include="lua-5.4.4\src\lzio.h">
       <Filter>lua-5.4.4</Filter>
     </ClInclude>
+    <ClInclude Include="cam_lua.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="VideoExample.lua" />
+    <None Include="cam_lua_setup.lua" />
   </ItemGroup>
 </Project>

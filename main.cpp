@@ -17,67 +17,19 @@ extern "C"
 #include "lua-5.4.4/src/lualib.h"
 }
 
+#include "cam_lua.h"
+
 /* mark in error messages for incomplete statements */
 #define EOFMARK		"<eof>"
 
 // Create global CAM object
 CAM_half g_cam;
 
-int lua_HostFunction(lua_State* L)
-{
-	int stack_size = lua_gettop(L);
-	float a = (float)lua_tonumber(L, 1);
-	float b = (float)lua_tonumber(L, 2);
-
-	std::cout << "[C++] HostFunction(" << a << ", " << b << ") called, stack_size: " << stack_size << std::endl;
-
-	float c = a * b;
-	lua_pushnumber(L, c);
-
-	return 1;  // return 1 value back to lua
-}
-
-
-//int lua_print(lua_State* L) {
-//	const char* str = luaL_checkstring(L, 1);
-//
-//	std::cout << str << std::endl;
-//
-//	return 0;
-//}
-
-//static int luaB_print(lua_State* L) {
-int lua_print(lua_State* L) {
-	int n = lua_gettop(L);  /* number of arguments */
-	int i;
-	for (i = 1; i <= n; i++) {  /* for each argument */
-		size_t l;
-		const char* s = luaL_tolstring(L, i, &l);  /* convert it to string */
-		if (i > 1)  /* not the first element? */
-			std::cout << " ";
-			//lua_writestring("\t", 1);  /* add a tab before it */
-		//lua_writestring(s, l);  /* print it */
-		std::cout << s;
-		lua_pop(L, 1);  /* pop result */
-	}
-	//lua_writeline();
-	std::cout << std::endl;
-	return 0;
-}
-
 // Override base class with your custom functionality
 class CAM6 : public olc::PixelGameEngine
 {
 private:
 	lua_State* L;
-
-	struct Player
-	{
-		std::string title;
-		std::string name;
-		std::string family;
-		int level;
-	} player;
 
 public:
 	CAM6()
@@ -97,16 +49,11 @@ public:
 
 		ConsoleCaptureStdOut(true);
 
-		// Zforth setup
-		//zf_init(0);  // no tracing
-		//zf_bootstrap();
-		//zf::include("./forth/core.zf");
-
 		// Lua setup
 		L = luaL_newstate();
 		luaL_openlibs(L);
-		lua_register(L, "HostFunction", lua_HostFunction);
-		lua_register(L, "print", lua_print);
+		luaopen_libLuaCAM(L);
+		CheckLua(luaL_dofile(L, "cam_lua_setup.lua"));
 
 
 		// Init CAM machine
@@ -201,72 +148,6 @@ public:
 			in_chunk = false;
 			chunk.clear();
 		}
-
-
-
-
-		//Push the new line onto the Lua stack
-		//lua_pushlstring(L, sText.c_str(), strlen(sText.c_str()));
-
-
-
-
-
-		//zf::do_eval("olc", ++line, sText.c_str());
-		//std::string buff = sText + '\n';
-
-		//std::cout << "[C++] " << cmd << "bla" << std::endl;
-
-		//CheckLua(luaL_dostring(L, cmd.c_str()));
-
-		//CheckLua(luaL_loadbuffer(L, buff.c_str(), strlen(buff.c_str()), "line") ||
-		//	lua_pcall(L, 0, 0, 0));
-
-		//CheckLua(luaL_dostring(L, "print(\"[LUA]  Hello World\")"));
-
-		//if (CheckLua(luaL_dofile(L, "VideoExample.lua")))
-		//{
-
-		//}
-		//{
-		//	lua_getglobal(L, "DoAThing");
-		//	if (lua_isfunction(L, -1))
-		//	{
-		//		lua_pushnumber(L, 5.0f);
-		//		lua_pushnumber(L, 6.0f);
-
-		//		if (CheckLua(lua_pcall(L, 2, 1, 0)))
-		//		{
-		//			float val = (float)lua_tonumber(L, -1);
-		//			std::cout << "Value returned: " << val << std::endl;
-		//		}
-		//	}
-
-		//	/*lua_getglobal(L, "player");
-		//	if (lua_istable(L, -1))
-		//	{
-		//		lua_pushstring(L, "Name");
-		//		lua_gettable(L, -2);
-		//		player.name = lua_tostring(L, -1);
-		//		lua_pop(L, 1);
-
-		//		lua_pushstring(L, "Family");
-		//		lua_gettable(L, -2);
-		//		player.family = lua_tostring(L, -1);
-		//		lua_pop(L, 1);
-
-		//		lua_pushstring(L, "Title");
-		//		lua_gettable(L, -2);
-		//		player.title = lua_tostring(L, -1);
-		//		lua_pop(L, 1);
-
-		//		lua_pushstring(L, "Level");
-		//		lua_gettable(L, -2);
-		//		player.level = (int)lua_tonumber(L, -1);
-		//		lua_pop(L, 1);
-		//	}
-		//	std::cout << player.title << " " << player.name << " of " << player.family << " [Level: " << player.level << "]" << std::endl;*/
-		//}
 
 
 		return true;

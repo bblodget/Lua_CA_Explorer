@@ -91,3 +91,19 @@ function hglass(index)
 		return 0
 	end
 end
+
+function echo(index)
+	nh = n_moore(index)
+
+	return nh.CENTER
+end
+
+
+function trace(index)
+	n = n_moore(index)
+	return n.CENTER | n.CENTER_
+end
+
+function off(index)
+	return 0
+end

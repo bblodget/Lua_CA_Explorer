@@ -86,8 +86,8 @@ function hglass(index)
 
 	if	ewsnc == 1 or ewsnc == 2 or ewsnc == 3 or ewsnc == 11 or
 		ewsnc == 21 or ewsnc == 25 or ewsnc == 29 or ewsnc == 30 or ewsnc == 31 then
-		return 0
-	else
 		return 1
+	else
+		return 0
 	end
 end

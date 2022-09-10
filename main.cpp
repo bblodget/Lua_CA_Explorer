@@ -111,7 +111,7 @@ public:
 		static bool in_chunk = false;
 		int status;
 
-		if (in_chunk) 
+		if (in_chunk)
 		{
 			// continuation of chunk
 			// Append the new line to the old
@@ -124,8 +124,18 @@ public:
 			chunk.append(sText);
 		}
 
-		//Check if we can just run the new line
-		status = luaL_dostring(L, chunk.c_str());
+		// Check if we can run as an expression
+		// Which will print the value when it gets pushed on the stack
+		std::string ret_chunk = std::string("return " + chunk);
+		status = luaL_dostring(L, ret_chunk.c_str());
+
+		if (status != LUA_OK) {
+			lua_pop(L, 1); // remove the error message from stack
+
+			//Check if we can just run the new line
+			status = luaL_dostring(L, chunk.c_str());
+		}
+
 		if (status != LUA_OK) 
 		{
 			std::string errormsg = lua_tostring(L, -1);
@@ -147,6 +157,9 @@ public:
 			// Chunk ran ok
 			in_chunk = false;
 			chunk.clear();
+
+			// Print anything on the stack
+			l_print();
 		}
 
 
@@ -164,6 +177,19 @@ public:
 		}
 		return true;
 	}
+
+	void l_print()
+	{
+		int n = lua_gettop(L);
+		if (n > 0) {  /* any result to be printed? */
+			luaL_checkstack(L, LUA_MINSTACK, "too many results to print");
+			lua_getglobal(L, "print");
+			lua_insert(L, 1);
+			CheckLua(lua_pcall(L, n, 0, 0));
+		}
+	}
+
+
 };
 
 

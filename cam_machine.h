@@ -93,7 +93,11 @@ public:
 	// Get the CAM state, PAUSE, RUN, or STEP
 	State get_run_state()
 	{
-		State state = m_run_state;
+		return m_run_state;
+	}
+
+	void dec_steps()
+	{
 		if (m_run_state == STEP) {
 			m_steps--;
 			if (m_steps <= 0) {
@@ -101,7 +105,6 @@ public:
 				m_steps = 0;
 			}
 		}
-		return state;
 	}
 
 	void set_steps(int steps)

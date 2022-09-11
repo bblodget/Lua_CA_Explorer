@@ -8,5 +8,6 @@ namespace rules {
 	int trace(int neighbors);
 	int off(int neighbors);
 	int hglass(int neighbors);
+	int pass(int neighbors);
 
 }

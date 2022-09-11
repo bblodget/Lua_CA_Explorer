@@ -67,6 +67,7 @@ int rules::off(int neighbors)
 	return 0;
 }
 
+
 int rules::hglass(int neighbors)
 {
 	g_cam.set_neighborhood(CAM_half::N_MOORE);

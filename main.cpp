@@ -81,24 +81,22 @@ public:
 			ConsoleShow(olc::Key::TAB, false);
 
 
+		// Copy the current state to the output
+		g_cam.cp_state_to_output();
 
-		
-		if (g_cam.get_run_state() != CAM_half::STOP) {
+		// Go through every pixel and update for next state
+		// Display this state.
 
-			// Copy the current state to the output
-			g_cam.cp_state_to_output();
-
-
-			// Go through every pixel and update for next state
-			// Display this state.
-
-			for (int y = 0; y < ScreenHeight(); y++)
-				for (int x = 0; x < ScreenWidth(); x++)
-				{
+		for (int y = 0; y < ScreenHeight(); y++)
+			for (int x = 0; x < ScreenWidth(); x++)
+			{
+				if (g_cam.get_run_state() != CAM_half::STOP) {
 					g_cam.update_state(x, y);
-					Draw(x, y, g_cam.get_out_pixel(x, y));
 				}
-		}
+				Draw(x, y, g_cam.get_out_pixel(x, y));
+			}
+
+		g_cam.dec_steps();
 
 		return true;
 	}

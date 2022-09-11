@@ -162,6 +162,32 @@ public:
 		}
 	}
 
+	// Clear the state in specified plane
+	void clear_state(Plane plane)
+	{
+		for (int i = 0; i < (screen_width * screen_height); i++)
+		{
+			switch (plane)
+			{
+			case PLN0: m_pln0_state[i] = 0;
+			case PLN1: m_pln1_state[i] = 0;
+			}
+		}
+	}
+
+	// Clear the state in specified plane
+	void clear_out(Plane plane)
+	{
+		for (int i = 0; i < (screen_width * screen_height); i++)
+		{
+			switch (plane)
+			{
+			case PLN0: m_pln0_out[i] = 0;
+			case PLN1: m_pln1_out[i] = 0;
+			}
+		}
+	}
+
 	void make_random_state(Plane plane)
 	{
 		for (int i = 0; i < (screen_width * screen_height); i++)

@@ -13,12 +13,14 @@
 
 #include "cam_lua.h"
 #include "cam_machine.h"
-#include "olcPixelGameEngine.h"
+#include "main.h"
 #include <iostream>
+
 
 /*********************** Function Definitions ************************/
 
 // Open the CAM library
+// Store a pointer to the Pixel Game Engine instance
 int luaopen_libLuaCAM(lua_State* L) 
 {
 	lua_register(L, "print", lua_print);
@@ -27,6 +29,9 @@ int luaopen_libLuaCAM(lua_State* L)
 	lua_register(L, "step", lua_step);
 	lua_register(L, "run", lua_run);
 	lua_register(L, "stop", lua_stop);
+	lua_register(L, "home", lua_home);
+	lua_register(L, "clear_state", lua_clear_state);
+	lua_register(L, "clear_out", lua_clear_out);
 	return 1;
 }
 
@@ -140,10 +145,32 @@ int lua_run(lua_State* L)
 
 int lua_stop(lua_State* L)
 {
+	lua_settop(L, 0); // discard all arguments
+	g_cam.stop();
+	return 0;
+}
+
+// Clears the console output
+int lua_home(lua_State* L)
+{
 	// discard all arguments
 	lua_settop(L, 0);
+	pge_ConsoleClear();
+	return 0;
+}
 
-	g_cam.stop();
+int lua_clear_state(lua_State* L)
+{
+	lua_settop(L, 1); // Only one arguement, discard others
+	CAM_half::Plane bit_plane = (CAM_half::Plane)luaL_checkinteger(L, 1);
+	g_cam.clear_state(bit_plane);
+	return 0;
+}
 
+int lua_clear_out(lua_State* L)
+{
+	lua_settop(L, 1); // Only one arguement, discard others
+	CAM_half::Plane bit_plane = (CAM_half::Plane)luaL_checkinteger(L, 1);
+	g_cam.clear_out(bit_plane);
 	return 0;
 }

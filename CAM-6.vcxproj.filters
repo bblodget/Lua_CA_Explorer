@@ -230,6 +230,9 @@
     <ClInclude Include="cam_lua.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="main.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="cam_lua_setup.lua" />

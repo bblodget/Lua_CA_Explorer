@@ -197,12 +197,17 @@ public:
 
 };
 
-
+// Give the cam_pge file scope
+static CAM6 cam_pge;
 
 int main()
 {
-	CAM6 demo;
-	if (demo.Construct(g_cam.get_screen_width(), g_cam.get_screen_height(), 3, 3, false))
-		demo.Start();
+	if (cam_pge.Construct(g_cam.get_screen_width(), g_cam.get_screen_height(), 3, 3, false))
+		cam_pge.Start();
 	return 0;
+}
+
+void pge_ConsoleClear()
+{
+	cam_pge.ConsoleClear();
 }

@@ -107,3 +107,11 @@ end
 function off(index)
 	return 0
 end
+
+function clear()
+	clear_state(PLN0)
+	clear_state(PLN1)
+	clear_out(PLN0)
+	clear_out(PLN1)
+	step(1)
+end

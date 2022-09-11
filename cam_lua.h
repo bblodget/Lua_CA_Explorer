@@ -30,3 +30,6 @@ int lua_update_rule(lua_State* L);
 int lua_step(lua_State* L);
 int lua_run(lua_State* L);
 int lua_stop(lua_State* L);
+int lua_home(lua_State* L);
+int lua_clear_state(lua_State* L);
+int lua_clear_out(lua_State* L);

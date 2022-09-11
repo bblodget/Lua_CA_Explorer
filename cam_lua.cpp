@@ -32,6 +32,7 @@ int luaopen_libLuaCAM(lua_State* L)
 	lua_register(L, "home", lua_home);
 	lua_register(L, "clear_state", lua_clear_state);
 	lua_register(L, "clear_out", lua_clear_out);
+	lua_register(L, "set_state", lua_set_state);
 	return 1;
 }
 
@@ -121,7 +122,9 @@ int lua_step(lua_State* L)
 	int n = lua_gettop(L);
 
 	// discard any extra arguemnts pass in
-	lua_settop(L, 1);
+	if (n > 1) {
+		lua_settop(L, 1);
+	}
 
 	if (n > 0) {
 		// Use the one argument
@@ -174,3 +177,39 @@ int lua_clear_out(lua_State* L)
 	g_cam.clear_out(bit_plane);
 	return 0;
 }
+
+// Sets states in the bitplane
+// Expected params
+// int x - x pos
+// int y - y pos
+// string s - Incoded string '#' means 1, anything else means 0.
+// Plane p (opt) - The plane to write to PLN0 or PLN1. PLN0 default.
+int lua_set_state(lua_State* L)
+{
+	CAM_half::Plane plane = CAM_half::PLN0;
+
+	// Get the number of args
+	int n = lua_gettop(L);
+
+	// discard any extra arguemnts pass in
+	if (n > 4) {
+		lua_settop(L, 4);
+	}
+
+	int x = luaL_checkinteger(L, 1);
+	int y = luaL_checkinteger(L, 2);
+	std::string s = luaL_checkstring(L, 3);
+
+	if (n > 3) {
+		// Optional Plane argument
+		int p = luaL_checkinteger(L, 4);
+		if (p == 1) {
+			plane = CAM_half::PLN1;
+		}
+	}
+
+	g_cam.set_state(plane, x, y, s);
+
+	return 0;
+}
+

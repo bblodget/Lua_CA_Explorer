@@ -33,6 +33,8 @@ public:
 		N_MOORE = 0, N_VONN
 	};
 
+
+
 	// Moore Neighborhood
 	struct N_Moore
 	{
@@ -63,6 +65,8 @@ public:
 		unsigned int NORTH : 1;
 	};
 
+private:
+
 	// Bit plane output values
 	int m_pln0_out[screen_width * screen_height] = { 0 };
 	int m_pln1_out[screen_width * screen_height] = { 0 };
@@ -89,6 +93,8 @@ public:
 
 	// Current neighborhood type
 	Neighborhood m_neighborhood = N_MOORE;
+
+public:
 
 	// Get the CAM state, PAUSE, RUN, or STEP
 	State get_run_state()

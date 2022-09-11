@@ -4,7 +4,6 @@
 int rules::life(int neighbors)
 {
 	g_cam.set_neighborhood(CAM_half::N_MOORE);
-	g_cam.set_table(CAM_half::PLN0);
 
 	// FIXME: This technique is not portable.
 	// But it is convenient. 
@@ -29,7 +28,6 @@ int rules::life(int neighbors)
 int rules::parity(int neighbors)
 {
 	g_cam.set_neighborhood(CAM_half::N_MOORE);
-	g_cam.set_table(CAM_half::PLN0);
 
 	// FIXME: This technique is not portable.
 	// But it is convenient. 
@@ -43,7 +41,6 @@ int rules::parity(int neighbors)
 int rules::echo(int neighbors)
 {
 	g_cam.set_neighborhood(CAM_half::N_MOORE);
-	g_cam.set_table(CAM_half::PLN1);
 
 	// FIXME: This technique is not portable.
 	// But it is convenient. 
@@ -55,7 +52,6 @@ int rules::echo(int neighbors)
 int rules::trace(int neighbors)
 {
 	g_cam.set_neighborhood(CAM_half::N_MOORE);
-	g_cam.set_table(CAM_half::PLN1);
 
 	// FIXME: This technique is not portable.
 	// But it is convenient. 
@@ -67,7 +63,6 @@ int rules::trace(int neighbors)
 int rules::off(int neighbors)
 {
 	g_cam.set_neighborhood(CAM_half::N_MOORE);
-	g_cam.set_table(CAM_half::PLN1);
 
 	return 0;
 }
@@ -75,7 +70,6 @@ int rules::off(int neighbors)
 int rules::hglass(int neighbors)
 {
 	g_cam.set_neighborhood(CAM_half::N_MOORE);
-	g_cam.set_table(CAM_half::PLN0);
 
 	// FIXME: This technique is not portable.
 	// But it is convenient. 

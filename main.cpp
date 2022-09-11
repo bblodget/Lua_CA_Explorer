@@ -57,11 +57,11 @@ public:
 
 
 		// Init CAM machine
-		//cam_example::life_r_pentonimo();
+		cam_example::life_r_pentonimo();
 		//cam_example::life_inf_growth();
 		//cam_example::life_random();
 		//cam_example::parity();
-		cam_example::hglass();
+		//cam_example::hglass();
 
 		return true;
 	}

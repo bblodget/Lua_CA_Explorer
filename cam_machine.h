@@ -90,9 +90,6 @@ public:
 	// Current neighborhood type
 	Neighborhood m_neighborhood = N_MOORE;
 
-	// Current table that make_table is active on
-	Plane m_table = PLN0;
-
 	// Get the CAM state, PAUSE, RUN, or STEP
 	State get_run_state()
 	{
@@ -136,12 +133,6 @@ public:
 		m_color_table[1] = color1;
 		m_color_table[2] = color2;
 		m_color_table[3] = color3;
-	}
-
-	// Set the current table that make_table will write to
-	void set_table(Plane table)
-	{
-		m_table = table;
 	}
 
 	// Use a string to initialize state
@@ -216,11 +207,11 @@ public:
 	}
 
 	// Use the rule() function to update the current table.
-	void make_table(int(*rule)(int neighbors))
+	void make_table(int(*rule)(int neighbors), Plane bit_plane)
 	{
 		int value = 0;
 		for (int i = 0; i < table_size; i++) {
-			switch (m_table) {
+			switch (bit_plane) {
 			case PLN0 :
 				m_pln0_rules[i] = rule(i);
 				break;

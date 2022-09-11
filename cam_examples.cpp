@@ -6,10 +6,10 @@ namespace cam_example {
 	void life_r_pentonimo()
 	{
 		// Make the PLN0 rules
-		g_cam.make_table(rules::life);
+		g_cam.make_table(rules::life, CAM_half::PLN0);
 
 		// Make the PLN1 rules
-		g_cam.make_table(rules::echo);
+		g_cam.make_table(rules::echo, CAM_half::PLN1);
 		//g_cam.make_table(rules::trace);
 
 		// Initialize PLN0 state with R-Pentonimo
@@ -21,10 +21,10 @@ namespace cam_example {
 	void life_inf_growth()
 	{
 		// Make the PLN0 rules
-		g_cam.make_table(rules::life);
+		g_cam.make_table(rules::life, CAM_half::PLN0);
 
 		// Make the PLN1 rules
-		g_cam.make_table(rules::echo);
+		g_cam.make_table(rules::echo, CAM_half::PLN1);
 		//g_cam.make_table(rules::trace);
 
 		// Infinite Growth
@@ -34,10 +34,10 @@ namespace cam_example {
 	void life_random()
 	{
 		// Make the PLN0 rules
-		g_cam.make_table(rules::life);
+		g_cam.make_table(rules::life, CAM_half::PLN0);
 
 		// Make the PLN1 rules
-		g_cam.make_table(rules::echo);
+		g_cam.make_table(rules::echo, CAM_half::PLN1);
 		//g_cam.make_table(rules::trace);
 
 		//Init PLN0 with random state
@@ -47,10 +47,10 @@ namespace cam_example {
 	void parity()
 	{
 		// Make the PLN0 rules
-		g_cam.make_table(rules::parity);
+		g_cam.make_table(rules::parity, CAM_half::PLN0);
 
 		// Make the PLN1 rules
-		g_cam.make_table(rules::echo);
+		g_cam.make_table(rules::echo, CAM_half::PLN1);
 		//g_cam.make_table(rules::trace);
 
 		//Init PLN0 with small square.
@@ -63,12 +63,12 @@ namespace cam_example {
 	void hglass()
 	{
 		// Make the PLN0 rules
-		g_cam.make_table(rules::hglass);
+		g_cam.make_table(rules::hglass, CAM_half::PLN0);
 
 		// Make the PLN1 rules
-		//g_cam.make_table(rules::off);
-		g_cam.make_table(rules::echo);
-		//g_cam.make_table(rules::trace);
+		//g_cam.make_table(rules::off, CAM_half::PLN1);
+		g_cam.make_table(rules::echo, CAM_half::PLN1);
+		//g_cam.make_table(rules::trace, CAM_half::PLN1);
 
 		// Setup color table
 		g_cam.set_color_table(

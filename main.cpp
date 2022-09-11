@@ -30,6 +30,7 @@ class CAM6 : public olc::PixelGameEngine
 {
 private:
 	lua_State* L;
+	float		fFrameTimer = 0.0f;
 
 public:
 	CAM6()
@@ -77,6 +78,13 @@ public:
 		//if (!GetKey(olc::Key::SPACE).bPressed)
 		//	return true;
 
+		bool do_update = false;
+		fFrameTimer += fElapsedTime;
+		if (fFrameTimer > g_cam.get_delay()) {
+			do_update = true;
+			fFrameTimer = 0.0;
+		}
+
 		// User Input
 		if (GetKey(olc::Key::TAB).bPressed)
 			ConsoleShow(olc::Key::TAB, false);
@@ -91,7 +99,7 @@ public:
 		for (int y = 0; y < ScreenHeight(); y++)
 			for (int x = 0; x < ScreenWidth(); x++)
 			{
-				if (g_cam.get_run_state() != CAM_half::STOP) {
+				if (do_update && g_cam.get_run_state() != CAM_half::STOP) {
 					g_cam.update_state(x, y);
 				}
 				Draw(x, y, g_cam.get_out_pixel(x, y));

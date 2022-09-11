@@ -94,7 +94,24 @@ private:
 	// Current neighborhood type
 	Neighborhood m_neighborhood = N_MOORE;
 
+	float m_desired_fps = 5.0;
+	float  m_delay = 0.0;
+
 public:
+
+	void set_fps(float fps) {
+		m_desired_fps = fps;
+		if (fps > 0) {
+			m_delay = 1 / fps;
+		}
+		else {
+			m_delay = 0.0;
+		}
+	}
+
+	float get_delay() {
+		return m_delay;
+	}
 
 	// Get the CAM state, PAUSE, RUN, or STEP
 	State get_run_state()

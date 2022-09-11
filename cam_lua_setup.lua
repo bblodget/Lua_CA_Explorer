@@ -126,6 +126,14 @@ function draw_r_pentonimo(x, y)
 	set_state(x, y+2, "..#..")
 end
 
+function fill_rect(x, y, w, h)
+	for yy=y,y+h do
+		for xx=x,x+w do
+			set_state(xx,yy,"#")
+		end
+	end
+end
+
 function draw_inf_growth(x, y)
 	set_state(x, y, "########.#####...###......#######.#####")
 end
@@ -155,3 +163,10 @@ function rand_plane(ones_percent, plane)
 		end
 	end
 end
+
+function cs()
+	home()
+	clear()
+end
+
+

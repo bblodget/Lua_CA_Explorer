@@ -33,6 +33,7 @@ int luaopen_libLuaCAM(lua_State* L)
 	lua_register(L, "clear_state", lua_clear_state);
 	lua_register(L, "clear_out", lua_clear_out);
 	lua_register(L, "set_state", lua_set_state);
+	lua_register(L, "set_fps", lua_set_fps);
 	return 1;
 }
 
@@ -210,6 +211,14 @@ int lua_set_state(lua_State* L)
 
 	g_cam.set_state(plane, x, y, s);
 
+	return 0;
+}
+
+int lua_set_fps(lua_State* L)
+{
+	lua_settop(L, 1); // Only one arguement, discard others
+	float fps = luaL_checknumber(L, 1);
+	g_cam.set_fps(fps);
 	return 0;
 }
 

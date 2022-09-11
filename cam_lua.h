@@ -34,3 +34,4 @@ int lua_home(lua_State* L);
 int lua_clear_state(lua_State* L);
 int lua_clear_out(lua_State* L);
 int lua_set_state(lua_State* L);
+int lua_set_fps(lua_State* L);

@@ -24,6 +24,9 @@ int luaopen_libLuaCAM(lua_State* L)
 	lua_register(L, "print", lua_print);
 	lua_register(L, "set_color_table", lua_set_color_table);
 	lua_register(L, "update_rule", lua_update_rule);
+	lua_register(L, "step", lua_step);
+	lua_register(L, "run", lua_run);
+	lua_register(L, "stop", lua_stop);
 	return 1;
 }
 
@@ -105,3 +108,42 @@ int lua_update_rule(lua_State* L)
 	return 0;	// return 0 items on the stack
 }
 
+int lua_step(lua_State* L)
+{
+	int num_steps = 0;
+
+	// Get the number of args
+	int n = lua_gettop(L);
+
+	// discard any extra arguemnts pass in
+	lua_settop(L, 1);
+
+	if (n > 0) {
+		// Use the one argument
+		num_steps = luaL_checkinteger(L, 1);
+	}
+
+	g_cam.set_steps(num_steps);
+
+	return 0;
+}
+
+int lua_run(lua_State* L)
+{
+	// discard all arguments
+	lua_settop(L, 0);
+
+	g_cam.run();
+
+	return 0;
+}
+
+int lua_stop(lua_State* L)
+{
+	// discard all arguments
+	lua_settop(L, 0);
+
+	g_cam.stop();
+
+	return 0;
+}

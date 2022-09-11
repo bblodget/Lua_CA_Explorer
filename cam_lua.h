@@ -27,3 +27,6 @@ int luaopen_libLuaCAM(lua_State* L);
 int lua_print(lua_State* L);
 int lua_set_color_table(lua_State* L);
 int lua_update_rule(lua_State* L);
+int lua_step(lua_State* L);
+int lua_run(lua_State* L);
+int lua_stop(lua_State* L);

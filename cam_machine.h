@@ -18,6 +18,11 @@ static constexpr int table_size = 1024;
 class CAM_half
 {
 public:
+	enum State
+	{
+		STOP=0, RUN, STEP
+	};
+
 	enum Plane
 	{
 		PLN0=0, PLN1
@@ -70,6 +75,10 @@ public:
 	int m_pln0_rules[table_size] = { 0 };
 	int m_pln1_rules[table_size] = { 0 };
 
+	// Running state
+	State m_run_state = STOP;
+	int m_steps = 0;
+
 	// Color table.  Map the two planes to color values
 	olc::Pixel m_color_table[4] = {
 		olc::BLACK,		// 00
@@ -83,6 +92,36 @@ public:
 
 	// Current table that make_table is active on
 	Plane m_table = PLN0;
+
+	// Get the CAM state, PAUSE, RUN, or STEP
+	State get_run_state()
+	{
+		State state = m_run_state;
+		if (m_run_state == STEP) {
+			m_steps--;
+			if (m_steps <= 0) {
+				m_run_state = STOP;
+				m_steps = 0;
+			}
+		}
+		return state;
+	}
+
+	void set_steps(int steps)
+	{
+		m_steps = steps;
+		m_run_state = STEP;
+	}
+
+	void run()
+	{
+		m_run_state = RUN;
+	}
+
+	void stop()
+	{
+		m_run_state = STOP;
+	}
 
 	// Set the current type of neighborhood
 	void set_neighborhood(Neighborhood hood)

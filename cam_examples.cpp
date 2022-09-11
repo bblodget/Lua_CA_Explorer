@@ -83,5 +83,24 @@ namespace cam_example {
 		g_cam.make_random_state(CAM_half::PLN0);
 	}
 
+	void start()
+	{
+		// Make the PLN0 rules
+		// Next state is echo of this state.  No change.
+		g_cam.make_table(rules::echo, CAM_half::PLN0);
+
+		// Make the PLN1 rules
+		g_cam.make_table(rules::off, CAM_half::PLN1);
+
+		// Setup default color table
+		g_cam.set_color_table(
+			olc::BLACK,		// 00
+			olc::WHITE,		// 01
+			olc::RED,		// 10
+			olc::GREEN		// 11
+		);
+
+	}
+
 
 }

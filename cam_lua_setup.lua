@@ -29,6 +29,10 @@ BLANK				= {0, 0, 0, 0}
 PLN0	= 0
 PLN1	= 1
 
+-- Screen Constants
+SCREEN_WIDTH	= 256
+SCREEN_HEIGHT	= 256
+
 function n_moore(index)
 	nh = {}
 	nh.CENTER	= (index >> 0) & 0x01
@@ -46,7 +50,7 @@ end
 
 function make_table(rule, bit_plane)
 	bit_plane = bit_plane or 0 -- 0 is the default plane for optional param
-	for i = 1, 1024 do
+	for i = 0, 1023 do
 		update_rule(bit_plane, i, rule(i))
 	end
 end
@@ -113,5 +117,41 @@ function clear()
 	clear_state(PLN1)
 	clear_out(PLN0)
 	clear_out(PLN1)
-	step(1)
+end
+
+
+function draw_r_pentonimo(x, y)
+	set_state(x, y+0, "..##.")
+	set_state(x, y+1, ".##..")
+	set_state(x, y+2, "..#..")
+end
+
+function draw_inf_growth(x, y)
+	set_state(x, y, "########.#####...###......#######.#####")
+end
+
+-- Specify the percent of random ones
+function rand(ones_percent)
+	local r = math.random(100)
+	if (r>ones_percent) then
+		return 0
+	else
+		return 1
+	end
+end
+
+function rand_plane(ones_percent, plane)
+	local r=0
+	ones_percent = ones_percent or 50	-- 50% default for opt param
+	plane = plane or PLN0 -- default for optional param
+	for y=1,SCREEN_HEIGHT do
+		for x=1,SCREEN_WIDTH do
+			r = rand(ones_percent)
+			if r==0 then
+				set_state(x,y,".")
+			else
+				set_state(x,y,"#")
+			end
+		end
+	end
 end

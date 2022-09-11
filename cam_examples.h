@@ -6,4 +6,5 @@ namespace cam_example {
 	void life_random();
 	void parity();
 	void hglass();
+	void start();
 }

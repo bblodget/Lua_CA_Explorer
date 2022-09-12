@@ -26,14 +26,14 @@ extern "C"
 CAM_half g_cam;
 
 // Override base class with your custom functionality
-class CAM6 : public olc::PixelGameEngine
+class LuaCAM : public olc::PixelGameEngine
 {
 private:
 	lua_State* L;
 	float		fFrameTimer = 0.0f;
 
 public:
-	CAM6()
+	LuaCAM()
 	{
 		// Name your application
 		sAppName = "Lua CA Explorer";
@@ -205,7 +205,7 @@ public:
 };
 
 // Give the cam_pge file scope
-static CAM6 cam_pge;
+static LuaCAM cam_pge;
 
 int main()
 {

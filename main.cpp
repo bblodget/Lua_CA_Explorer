@@ -36,7 +36,7 @@ public:
 	CAM6()
 	{
 		// Name your application
-		sAppName = "CAM6";
+		sAppName = "Lua CA Explorer";
 	}
 
 public:
@@ -99,7 +99,7 @@ public:
 		for (int y = 0; y < ScreenHeight(); y++)
 			for (int x = 0; x < ScreenWidth(); x++)
 			{
-				if (do_update && g_cam.get_run_state() != CAM_half::STOP) {
+				if (g_cam.get_run_state() == CAM_half::STEP || (do_update && g_cam.get_run_state() == CAM_half::RUN)) {
 					g_cam.update_state(x, y);
 				}
 				Draw(x, y, g_cam.get_out_pixel(x, y));

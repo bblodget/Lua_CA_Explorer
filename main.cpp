@@ -54,7 +54,7 @@ public:
 		L = luaL_newstate();
 		luaL_openlibs(L);
 		luaopen_libLuaCAM(L);
-		CheckLua(luaL_dofile(L, "cam_lua_setup.lua"));
+		CheckLua(luaL_dofile(L, "./assets/cam_lua_setup.lua"));
 
 
 		// Init CAM machine

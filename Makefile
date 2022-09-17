@@ -2,7 +2,7 @@
 # this app for a web browser.
 # I run it using Windows Subsystem for Linux (WSL2)
 # I can run a local server using the commane
-# > emrun --no_browser WASM/basic_template.html
+# > emrun --no_browser docs/WASM/basic_template.html
 # Then in a browser goto the URL 
 # http://localhost:6931/basic_template.html
 
@@ -13,7 +13,7 @@ CFLAGS := -O2
 CXX := em++
 CXXFLAGS := -std=c++17 -O2 -s ALLOW_MEMORY_GROWTH=1 -s MAX_WEBGL_VERSION=2 -s MIN_WEBGL_VERSION=2 -s USE_LIBPNG=1 --preload-file ./assets
 
-OUT_DIR := WASM
+OUT_DIR := docs/WASM
 OBJ_DIR := emscript_obj
 SRC_DIR := lua-5.4.4/src
 

@@ -7,5 +7,5 @@ in this index
 
 That is pretty neato.
 
-* [Readme (.md)](readme.md)
+* [Readme (.md)](Readme.md)
 * [QuickStart (.md)](QuickStart.md)

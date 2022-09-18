@@ -3,6 +3,8 @@ layout: post
 title: Lua CA QuickStart
 ---
 
+## Quick Start
+
 Use the TAB key to toggle between "console" mode and "normal" mode.
 
 Here is an example you can type in to the console to initialize

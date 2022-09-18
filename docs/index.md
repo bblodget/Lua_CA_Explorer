@@ -10,5 +10,5 @@ in this index
 
 That is pretty neato.
 
-* [Readme (.md)](Readme.md)
-* [QuickStart (.md)](QuickStart.md)
+* [Readme](Readme.md)
+* [QuickStart](QuickStart.md)

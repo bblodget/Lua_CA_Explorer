@@ -7,7 +7,7 @@ Use the TAB key to toggle between "console" mode and "normal" mode.
 
 Here is an example you can type in to the console to initialize
 the field with a random pattern.  Then initialize the table with
-the Conway's Game of Life rules. Set the frame rate, then start it running.
+Conway's Game of Life rules. Set the frame rate, then start it running.
 
 ```lua
 make_table(life, PLN0)

@@ -55,6 +55,8 @@ function make_table(rule, bit_plane)
 	end
 end
 
+-- Start Rules
+
 function life(index)
 	nh = n_moore(index)
 
@@ -111,6 +113,13 @@ end
 function off(index)
 	return 0
 end
+
+function parity(index)
+	n = n_moore(index)
+	return n.CENTER ~ n.NORTH ~ n.SOUTH ~ n.EAST ~ n.WEST
+end
+
+-- End Rules
 
 function clear()
 	clear_state(PLN0)
@@ -170,3 +179,83 @@ function cs()
 end
 
 
+-- demos
+
+function life_inf_growth()
+	clear()
+	make_table(life, PLN0)
+	make_table(echo, PLN1)
+	draw_inf_growth(100, 128)
+	set_fps(10)
+	run()
+end
+
+function life_random()
+	clear()
+	set_color_table(BLACK, WHITE, RED, GREEN)
+	make_table(life, PLN0)
+	make_table(echo, PLN1)
+	rand_plane(15)
+	set_fps(10)
+	run()
+end
+
+function life_r_pentonimo()
+	clear()
+	set_color_table(BLACK, WHITE, RED, GREEN)
+	make_table(life, PLN0)
+	make_table(echo, PLN1)
+	draw_r_pentonimo(128,128)
+	set_fps(10)
+	run()
+end
+
+function demo_parity()
+	clear()
+	make_table(parity, PLN0)
+	make_table(echo, PLN1)
+	fill_rect(112, 112, 32, 32)
+	set_fps(10)
+	run()
+end
+
+function demo_hglass()
+	clear()
+	make_table(hglass, PLN0)
+	make_table(echo, PLN1)
+	set_color_table(BLACK, CYAN, VERY_DARK_CYAN, BLUE)
+	rand_plane(10)
+	set_fps(0)
+	run()
+end
+
+-- end demos
+
+function startup()
+	print("Welcome to Lua CA Explorer.")
+	print("Type TAB to toggle between console mode and normal mode.")
+	print("Type demos() to see a list of demos.")
+	print("")
+end
+
+function demos()
+	print("")
+	print("Remember to press TAB to toggle to normal mode and back.")
+	print("Here are some demos you can try:")
+	print("   life_inf_growth()")
+	print("   life_random()")
+	print("   life_r_pentonimo()")
+	print("   demo_parity()")
+	print("   demo_hglass()")
+	print("")
+	print("Other commands to try")
+	print("   step()     : step one generation")
+	print("   step(x)    : step x generations")
+	print("   run()      : run at set frame rate")
+	print("   set_fps(0) : Max frame rate")
+	print("   set_fps(x) : Set frame rate to x fps")
+	print("")
+end
+
+
+startup()

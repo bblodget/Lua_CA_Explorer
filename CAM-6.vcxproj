@@ -222,7 +222,7 @@
     <ClInclude Include="olcPixelGameEngine.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="cam_lua_setup.lua" />
+    <None Include="assets\cam_lua_setup.lua" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

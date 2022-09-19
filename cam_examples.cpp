@@ -28,7 +28,13 @@ namespace cam_example {
 		//g_cam.make_table(rules::trace);
 
 		// Infinite Growth
-		g_cam.set_state(CAM_half::PLN0, 20, 50, "########.#####...###......#######.#####");
+		g_cam.set_state(CAM_half::PLN0, 100, 128, "########.#####...###......#######.#####");
+
+		// Set frame rate
+		g_cam.set_fps(20);
+
+		// Start it running
+		g_cam.run();
 	}
 
 	void life_random()

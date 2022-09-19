@@ -232,6 +232,8 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="cam_lua_setup.lua" />
+    <None Include="assets\cam_lua_setup.lua">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

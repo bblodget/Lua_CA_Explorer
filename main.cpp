@@ -50,6 +50,9 @@ public:
 
 		ConsoleCaptureStdOut(true);
 
+		// Default to Console mode
+		ConsoleShow(olc::Key::TAB, false);
+
 		// Lua setup
 		L = luaL_newstate();
 		luaL_openlibs(L);
@@ -59,11 +62,11 @@ public:
 
 		// Init CAM machine
 		//cam_example::life_r_pentonimo();
-		//cam_example::life_inf_growth();
+		cam_example::life_inf_growth();
 		//cam_example::life_random();
 		//cam_example::parity();
 		//cam_example::hglass();
-		cam_example::start();
+		//cam_example::start();
 
 		return true;
 	}
@@ -152,7 +155,7 @@ public:
 		{
 			std::string errormsg = lua_tostring(L, -1);
 			if (errormsg.rfind(EOFMARK) != std::string::npos) {
-				lua_pop(L, 1);
+				lua_pop(L, 1);  // pop the error msg
 				std::cout << "... ";
 				std::cout.flush();
 				in_chunk = true;
@@ -185,6 +188,7 @@ public:
 		{
 			std::string errormsg = lua_tostring(L, -1);
 			std::cout << errormsg << std::endl;
+			lua_pop(L, 1);  // pop the error msg
 			return false;
 		}
 		return true;
@@ -217,4 +221,10 @@ int main()
 void pge_ConsoleClear()
 {
 	cam_pge.ConsoleClear();
+}
+
+void pge_ConsoleHide()
+{
+	// TODO: Implement this function
+
 }

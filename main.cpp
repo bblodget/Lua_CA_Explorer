@@ -31,6 +31,7 @@ class LuaCAM : public olc::PixelGameEngine
 private:
 	lua_State* L;
 	float		fFrameTimer = 0.0f;
+	bool	bStartupDone = false;
 
 public:
 	LuaCAM()
@@ -62,14 +63,11 @@ public:
 
 		// Init CAM machine
 		//cam_example::life_r_pentonimo();
-		cam_example::life_inf_growth();
+		//cam_example::life_inf_growth();
 		//cam_example::life_random();
 		//cam_example::parity();
-		//cam_example::hglass();
+		cam_example::hglass();
 		//cam_example::start();
-
-		// Lua setup script
-		CheckLua(luaL_dofile(L, "./assets/cam_lua_setup.lua"));
 
 		return true;
 	}
@@ -112,6 +110,17 @@ public:
 			}
 
 		g_cam.dec_steps();
+
+		// Run the startup script of not done before
+		// This is a hack to get the WASM to print
+		// the output of startup()
+		// It should really be in the OnUserCreate()
+		if (!bStartupDone) {
+			// Lua setup script
+			CheckLua(luaL_dofile(L, "./assets/cam_lua_setup.lua"));
+			bStartupDone = true;
+
+		}
 
 		return true;
 	}

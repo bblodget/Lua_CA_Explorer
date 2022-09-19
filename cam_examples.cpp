@@ -87,6 +87,12 @@ namespace cam_example {
 
 		//Init PLN0 with random state
 		g_cam.make_random_state(CAM_half::PLN0);
+
+		// Set max frame rate
+		g_cam.set_fps(0);
+
+		// Start it running
+		g_cam.run();
 	}
 
 	void start()

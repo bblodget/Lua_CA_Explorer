@@ -57,7 +57,7 @@ public:
 		L = luaL_newstate();
 		luaL_openlibs(L);
 		luaopen_libLuaCAM(L);
-		CheckLua(luaL_dofile(L, "./assets/cam_lua_setup.lua"));
+		
 
 
 		// Init CAM machine
@@ -67,6 +67,9 @@ public:
 		//cam_example::parity();
 		//cam_example::hglass();
 		//cam_example::start();
+
+		// Lua setup script
+		CheckLua(luaL_dofile(L, "./assets/cam_lua_setup.lua"));
 
 		return true;
 	}

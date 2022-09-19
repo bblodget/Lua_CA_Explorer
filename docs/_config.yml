@@ -74,7 +74,7 @@ aux_links:
   "LUA CA Explorer on GitHub":
     - "//github.com/bblodget/Lua_CA_Explorer"
   "LUA CA Explorer WebApp!!":
-    - "/WASM/basic_Template.html"
+    - "/Lua_CA_Explorer/WASM/basic_template.html"
 
 # Makes Aux links open in a new tab. Default is false
 aux_links_new_tab: true

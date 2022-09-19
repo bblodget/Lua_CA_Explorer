@@ -30,7 +30,8 @@ class LuaCAM : public olc::PixelGameEngine
 {
 private:
 	lua_State* L;
-	float		fFrameTimer = 0.0f;
+	float	fFrameTimer = 0.0f;
+	float	fTotalTimer = 0.0f;
 	bool	bStartupDone = false;
 
 public:
@@ -58,7 +59,8 @@ public:
 		L = luaL_newstate();
 		luaL_openlibs(L);
 		luaopen_libLuaCAM(L);
-		
+		// Lua setup script
+		CheckLua(luaL_dofile(L, "./assets/cam_lua_setup.lua"));
 
 
 		// Init CAM machine
@@ -84,6 +86,7 @@ public:
 
 		bool do_update = false;
 		fFrameTimer += fElapsedTime;
+		fTotalTimer += fElapsedTime;
 		if (fFrameTimer > g_cam.get_delay()) {
 			do_update = true;
 			fFrameTimer = 0.0;
@@ -92,6 +95,14 @@ public:
 		// User Input
 		if (GetKey(olc::Key::TAB).bPressed)
 			ConsoleShow(olc::Key::TAB, false);
+
+		// Wait a bit to run the startup() script.
+		// Gives the WASM webapp, time to scale things.
+		if (!bStartupDone && fTotalTimer > 2.0 && IsConsoleShowing()) {
+			// run lua startup()
+			CheckLua(luaL_dostring(L, "startup()"));
+			bStartupDone = true;
+		}
 
 
 		// Copy the current state to the output
@@ -111,16 +122,6 @@ public:
 
 		g_cam.dec_steps();
 
-		// Run the startup script of not done before
-		// This is a hack to get the WASM to print
-		// the output of startup()
-		// It should really be in the OnUserCreate()
-		if (!bStartupDone) {
-			// Lua setup script
-			CheckLua(luaL_dofile(L, "./assets/cam_lua_setup.lua"));
-			bStartupDone = true;
-
-		}
 
 		return true;
 	}

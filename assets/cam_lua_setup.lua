@@ -257,5 +257,3 @@ function demos()
 	print("")
 end
 
-
-startup()

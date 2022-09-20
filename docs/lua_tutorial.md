@@ -9,7 +9,7 @@ nav_order: 7
 
 # Quick Introduction to Lua
 
-This is a quick introduction to Lua is targeted towards people
+This quick introduction to Lua is targeted towards people
 that already have some programming experience in another language.
 
 Lua is a very clean, light and syntactically simple scripting language. Like Java and
